@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>W5d1</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <%  if current_user  %>
+    <%= current_user.username%>
+    <%= button_to "Sign Out", session_url, method: :delete %>
+    <% end %>
+
+  <%=flash.now[:errors] %>
+
+<%= yield %>
+
+</body>
+</html>
