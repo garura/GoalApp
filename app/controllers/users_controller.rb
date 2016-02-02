@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :require_login!, only: :show
+
   def new
 
   end
@@ -23,6 +25,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    goals = @user.goals
+    @public_goals = goals.select { |goal| goal.visible == true }
+    @hidden_goals = goals.select { |goal| goal.visible == false && goal.user_id == current_user.id }
   end
 
 

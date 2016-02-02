@@ -1,0 +1,27 @@
+•_•)
+<br>
+( •_•)>⌐■-■
+<br>
+(⌐■_■)
+<br>
+
+<big><big><big><big><big><big><big><big><h1><%= @user.username + " "%></h1></big></big></big></big></big></big></big></big>
+<%= (link_to "Create Goal", new_goal_url) if current_user.id == @user.id %>
+<br>
+<h1>Goals:</h1>
+
+<ul>
+  <% @public_goals.each do |goal| %>
+    <li><%= goal.name %></li>
+  <% end %>
+</ul>
+
+<% if @user.id == current_user.id %>
+  <br>
+  <h3>hidden goals >:)</h3>
+  <ul>
+    <% @hidden_goals.each do |goal| %>
+      <li><%= goal.name %></li>
+    <% end %>
+  </ul>
+<% end %>

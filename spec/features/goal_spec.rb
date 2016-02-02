@@ -38,7 +38,7 @@ feature "creating a goal" do
     sign_up_as_ginger_baker
     click_link "Create Goal"
     fill_in "Name", with: 'Hundred Push-Ups'
-    choose "False"
+    choose "Visible_False"
     click_button "Create Goal"
     expect(page).to have_content "Hundred Push-Ups"
   end

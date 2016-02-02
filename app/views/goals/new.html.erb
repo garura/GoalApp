@@ -1,0 +1,32 @@
+New Goal
+
+<form action= "<%= goals_url %>" method="post">
+
+
+<input type="hidden" name="authenticity_token" value=" <%= form_authenticity_token %>">
+<br>
+<label>
+Name
+  <input type="text" name="goal[name]" value="">
+
+</label>
+<br>
+<br>
+
+<label for="Visible">Visible
+
+  <br>
+
+<label>False
+  <input id = "Visible_False" type="radio" name="goal[visible]" value="false">
+  </label>
+  <br>
+
+  <label> True
+<input id = "Visible_True" type="radio" name="goal[visible]" value="true">
+</label>
+</label>
+<br>
+
+<input type="submit" name="name" value="Create Goal">
+</form>

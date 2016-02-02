@@ -4,9 +4,7 @@ class GoalsController < ApplicationController
   before_action :require_user_owns_goal!, only: [:edit, :update, :destroy]
 
 
-  def require_login!
-    redirect_to new_session_url unless !!current_user
-  end
+
 
   def require_user_owns_goal
     redirect_to goals_url unless current_user.id == params[:id]
@@ -19,10 +17,12 @@ class GoalsController < ApplicationController
   def create
     @goal = Goal.new(goal_params)
     @goal.user_id = current_user.id
+    @goal.completed = false
     if @goal.save
       redirect_to user_url(@goal.user_id)
     else
-      flash.now[:error] = @goal.errors.full_messages
+      fail
+      flash.now[:errors] = @goal.errors.full_messages
       render :new
     end
   end
@@ -36,7 +36,7 @@ class GoalsController < ApplicationController
     if @goal.update(goal_params)
       redirect_to user_url(@goal.user_id)
     else
-      flash.now[:error] = @goal.errors.full_messages
+      flash.now[:errors] = @goal.errors.full_messages
       render :edit
     end
   end
@@ -51,7 +51,7 @@ class GoalsController < ApplicationController
   private
 
   def goal_params
-    params.require(:goals).permit(:name, :visible, :completed, :user_id)
+    params.require(:goal).permit(:name, :visible, :completed, :user_id)
   end
 
 

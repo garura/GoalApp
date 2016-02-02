@@ -53,6 +53,17 @@ RSpec.configure do |config|
 
 end
 
+def sign_up(username)
+  visit "/users/new"
+  fill_in "Username", with: username
+  fill_in "Password", with: 'abcdef'
+  click_button 'Sign Up'
+end
+
+def sign_up_as_ginger_baker
+  sign_up("ginger_baker")
+end
+
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     # Choose a test framework:
